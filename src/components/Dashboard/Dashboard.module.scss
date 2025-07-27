@@ -1,0 +1,20 @@
+// src/components/Dashboard/Dashboard.module.scss
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // Cria 3 colunas de tamanho igual
+    gap: 2rem; // Espaçamento entre os cards
+    margin-top: -5rem; // "Puxa" o dashboard para cima do header
+
+    max-width: 1120px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Media query para telas menores (ex: celulares)
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; // Faz os cards ficarem um embaixo do outro
+    }
+}

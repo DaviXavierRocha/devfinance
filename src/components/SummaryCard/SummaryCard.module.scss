@@ -1,0 +1,43 @@
+// src/components/SummaryCard/SummaryCard.module.scss
+
+// -- Nossas variáveis de cor --
+$shape: #ffffff;
+$title: #363f5f;
+$text: #969cb3;
+$green: #49aa26;
+$red: #e92929;
+
+.card {
+  background: $shape;
+  padding: 1.5rem 2rem;
+  border-radius: 0.25rem;
+  color: $title;
+  border: 2px solid black;
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  strong {
+    display: block; // faz o <strong> ocupar a linha toda
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 3rem;
+  }
+
+  // Estilo para os cards de entrada e saída (fundo branco)
+  &.entrada,
+  &.saida {
+    background-color: $shape;
+    color: $title;
+  }
+
+  // Estilo específico para o card de total (fundo verde)
+  &.total {
+    background-color: $green;
+    color: #fff; // Texto branco para contrastar
+  }
+}

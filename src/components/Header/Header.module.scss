@@ -1,0 +1,22 @@
+// src/components/Header/Header.module.scss
+
+// Variáveis
+$green: #49aa26;
+$dark-blue: #363f5f;
+
+.header {
+  background-color: $dark-blue;
+  padding: 2rem 0 10rem; // Espaçamento para o dashboard vir por cima depois
+  text-align: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 992px;
+  margin: 0 auto; // Centraliza o container
+
+  h1 {
+    color: #fff;
+    font-weight: 100; // Uma fonte mais leve para o título
+  }
+}
