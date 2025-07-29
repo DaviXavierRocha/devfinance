@@ -1,0 +1,20 @@
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto; // Centraliza o container  
+  
+    h2 {
+      color: black;
+      font-weight: 100; // Uma fonte mais leve para o título
+    } 
+}
+
+.botao{
+    float: right;
+    transition-duration: 0.4s;
+  }
+  
+  .botao:hover {
+    background-color:red ;
+    color: rgb(245, 94, 94);
+  }

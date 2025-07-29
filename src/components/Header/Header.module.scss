@@ -13,10 +13,23 @@ $dark-blue: #363f5f;
 .container {
   width: 90%;
   max-width: 992px;
-  margin: 0 auto; // Centraliza o container
+  margin: 0 auto; // Centraliza o container  
 
   h1 {
     color: #fff;
     font-weight: 100; // Uma fonte mais leve para o título
-  }
+  }  
+}
+
+.botao{
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+}
+
+.botao:hover {
+  background-color: #04AA6D; /* Green */
+  color: white;
 }

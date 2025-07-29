@@ -1,10 +1,20 @@
 // src/App.tsx
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { Header } from './components/Header/Header';
+import ModalNovaTransacao from './components/Modais/ModalNovaTransacao';
 import { TabelaTransacoes } from './components/Transacoes/TabelaTransacoes';
 import {useState} from 'react'
 
 function App() {
+  const [estaAberto, setEstaAberto] = useState(false);
+  const handleAbrirModalNovaTransação=()=>{
+    setEstaAberto(true);
+    console.log('Modal nova transação Verdadeiro')
+  };
+  const handleFecharModalNovaTransação=()=>{
+    setEstaAberto(false);
+    console.log('Modal nova transação Falso')
+  };
   const [transacoes, setTransacoes] = useState([
     {
       id: 1,
@@ -50,7 +60,8 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header onButtonClick={handleAbrirModalNovaTransação}/>
+      {estaAberto && <ModalNovaTransacao onClose={handleFecharModalNovaTransação}/>}
       <Dashboard transacoes={transacoes} />
       <TabelaTransacoes transacoes={transacoes} />
     </div>
