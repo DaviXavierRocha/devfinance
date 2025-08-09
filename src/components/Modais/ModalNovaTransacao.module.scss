@@ -1,20 +1,133 @@
-.container {
-    width: 90%;
-    max-width: 600px;
-    margin: 0 auto; // Centraliza o container  
-  
-    h2 {
-      color: black;
-      font-weight: 100; // Uma fonte mais leve para o título
-    } 
+// src/Modais/ModalNovaTransacao.module.scss
+
+// -- Variáveis de Cor do Projeto --
+$dark-blue: #363f5f;
+$green: #33cc95;
+$red: #e92929;
+$shape: #ffffff;
+$light-gray-bg: #f0f2f5;
+$input-bg: #e7e9ee;
+$text-body: #969cb3;
+$border-color: #d7d7d7;
+
+// Fundo escurecido que cobre a tela inteira
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.botao{
-    float: right;
-    transition-duration: 0.4s;
+// O conteúdo do modal, a "caixa" do formulário
+.content {
+  background-color: $light-gray-bg;
+  border-radius: 0.25rem;
+  padding: 2rem 3rem;
+  width: 90%;
+  max-width: 576px; // Um tamanho padrão para modais
+  position: relative; // Para posicionar o botão de fechar
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h2 {
+    color: $dark-blue;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
-  
-  .botao:hover {
-    background-color:red ;
-    color: rgb(245, 94, 94);
+
+  .botaoFechar {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: 0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
   }
+
+  input {
+    width: 91%;
+    padding: 0rem 1.5rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    border: 1px solid $border-color;
+    background: $input-bg;
+    font-weight: 400;
+    font-size: 1rem;
+
+    &::placeholder {
+      color: $text-body;
+    }
+  }
+
+  // Container para os botões de Entrada/Saída
+  .tipoContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+
+    button {
+      height: 4rem;
+      border: 1px solid $border-color;
+      border-radius: 0.5rem;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      color: $dark-blue;
+
+      &:hover {
+        border-color: #aaa;
+      }
+    }
+
+    // Estilo para o botão de Entrada quando está ATIVO
+    .entradaAtiva {
+      background: rgba(51, 204, 149, 0.1);
+      border-color: $green;
+    }
+    
+    // Estilo para o botão de Saída quando está ATIVO
+    .saidaAtiva {
+      background: rgba(233, 41, 41, 0.1);
+      border-color: $red;
+    }
+  }
+
+  // Botão principal de cadastro
+  button[type="submit"] {
+    width: 100%;
+    padding: 0 1.5rem;
+    height: 4rem;
+    background: $green;
+    color: #fff;
+    border-radius: 0.25rem;
+    border: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}

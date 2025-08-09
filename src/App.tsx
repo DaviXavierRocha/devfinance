@@ -1,28 +1,22 @@
 // src/App.tsx
+import { useState } from 'react';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { Header } from './components/Header/Header';
-import ModalNovaTransacao from './components/Modais/ModalNovaTransacao';
+import ModalNovaTransacao from './components/Modais/ModalNovaTransacao'; 
 import { TabelaTransacoes } from './components/Transacoes/TabelaTransacoes';
-import {useState} from 'react'
+import type { Transacao } from './Types/interfaces';
 
 function App() {
+
   const [estaAberto, setEstaAberto] = useState(false);
-  const handleAbrirModalNovaTransação=()=>{
-    setEstaAberto(true);
-    console.log('Modal nova transação Verdadeiro')
-  };
-  const handleFecharModalNovaTransação=()=>{
-    setEstaAberto(false);
-    console.log('Modal nova transação Falso')
-  };
-  const [transacoes, setTransacoes] = useState([
+  const [transacoes, setTransacoes] = useState<Transacao[]>([
     {
       id: 1,
       titulo: 'Desenvolvimento de site',
       valor: 12000,
       categoria: 'Venda',
       data: '13/07/2025',
-      tipo: 'receita', // 'receita' ou 'gasto'
+      tipo: 'receita',
     },
     {
       id: 2,
@@ -40,30 +34,46 @@ function App() {
       data: '08/07/2025',
       tipo: 'receita',
     },
-    {
-      id: 4,
-      titulo: 'Outro Freela de Logo',
-      valor: 2580,
-      categoria: 'Venda',
-      data: '08/07/2025',
-      tipo: 'receita',
-    },
-    {
-      id: 5,
-      titulo: 'Parcela do Carro',
-      valor: 1750,
-      categoria: 'Custos Fixos',
-      data: '10/07/2025',
-      tipo: 'gasto',
-    },
+
   ]);
+
+ 
+
+  const handleAbrirModalNovaTransacao = () => {
+    setEstaAberto(true);
+  };
+  const handleFecharModalNovaTransacao = () => {
+    setEstaAberto(false);
+  };
+
+
+  function adicionarTransacao(dadosDoFormulario: Omit<Transacao, 'id' | 'data'>) {
+
+    const novaTransacaoCompleta: Transacao = {
+      ...dadosDoFormulario, 
+      id: Math.random(),
+      data: new Date().toLocaleDateString('pt-BR'),
+    };
+
+
+    setTransacoes([...transacoes, novaTransacaoCompleta]);
+  }
+
+
+
 
   return (
     <div>
-      <Header onButtonClick={handleAbrirModalNovaTransação}/>
-      {estaAberto && <ModalNovaTransacao onClose={handleFecharModalNovaTransação}/>}
+      <Header onButtonClick={handleAbrirModalNovaTransacao} />
       <Dashboard transacoes={transacoes} />
       <TabelaTransacoes transacoes={transacoes} />
+
+      {estaAberto && (
+        <ModalNovaTransacao
+          onClose={handleFecharModalNovaTransacao}
+          onAdicionarTransacao={adicionarTransacao}
+        />
+      )}
     </div>
   );
 }
